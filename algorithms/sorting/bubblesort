@@ -1,0 +1,69 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sorting;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ *
+ * @author titusmoras
+ */
+public class Bubblesort {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    //in place swap, stable swap, On2 worst case when its reverse sorted
+    // On best case when its sorted
+    
+     int[] bubblesort(int numbers[]){
+        //make a marker to show swapping didnt happen, so we know its sorted
+        boolean swapped= true;
+        
+        //repeat the process of swappinh as many times as there areoitems
+        // every time we run the loop, one item gets sorted ato the end of the list
+        
+        for (int i = 0; i < numbers.length-1 && swapped; i++){
+            swapped = false;
+        System.out.println("");    
+        for (int h =0; h< numbers.length;h++){
+        System.out.print(numbers[h] + " ");
+            
+        }
+        
+            //System.out.println(Arrays.asList(numbers));
+            //swap to the end, skip one every rtime since the biggest makes it to the ens 
+            //after every loip
+            for(int j=0; j< numbers.length - i - 1;j++){
+                if(numbers[j] > numbers[j+1]){
+                 int temp = numbers[j]; numbers[j]= numbers[j+1]; numbers[j+1]=temp;
+                 swapped = true;
+              }
+            }
+                
+        }
+            
+         
+         
+         return numbers;
+    }
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int[] numbers = new int[] {6,5,4,3,2,1};
+        new Bubblesort().bubblesort(numbers);
+        //ArrayList <Integer> list = Arrays.asList(numbers);
+        //System.out.println(list);
+        for (int i =0; i< numbers.length;i++)
+        System.out.print(numbers[i] + " ");
+        
+    }
+    
+}
