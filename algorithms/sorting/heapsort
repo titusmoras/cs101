@@ -1,0 +1,72 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sorting;
+
+/**
+ *
+ * @author titusmoras
+ */
+public class HeapSort {
+    
+    void heapify(int[] numbers, int startIndex,int reduce){
+    int largestIndex = -1;
+        System.out.println("Heapifying....started with this array and starting point :" + numbers[startIndex]);
+        printArray(numbers);
+        
+    for(int i = startIndex; i < numbers.length - reduce; ){
+        largestIndex = i;
+        if(2*i + 1  < numbers.length - reduce && numbers[largestIndex] < numbers[2*i + 1])
+            largestIndex = 2*i +1;
+        if(2*i + 2  < numbers.length - reduce && numbers[largestIndex] < numbers[2*i + 2])
+            largestIndex = 2*i + 2;
+        if(largestIndex ==i)
+            break;
+        else
+        {
+        int temp = numbers[largestIndex]; numbers[largestIndex] = numbers[i]; numbers[i] = temp;
+        i = largestIndex;
+        System.out.println("Swapped....now array looks like this");
+        printArray(numbers);
+        }
+        
+
+
+
+        }
+    }
+    
+    void buildMaxHeap(int[] numbers){
+        System.out.println("Before buildMaxHeap");
+        printArray(numbers);
+
+        for(int i = (numbers.length+1)/2 -1 ;i>= 0; i-- )
+          heapify(numbers,i, 0);
+        
+        System.out.println("After buildMaxHeap");
+        printArray(numbers);
+
+    }
+
+    public static void main(String ... args){
+        int[] numbers = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+        HeapSort hs= new HeapSort();
+        hs.buildMaxHeap(numbers);
+        
+        for(int i = 0; i< numbers.length; i++)
+            {
+                int temp = numbers[0]; numbers[0] = numbers[numbers.length - 1 -i];
+                numbers[numbers.length - 1 -i] = temp;
+                hs.heapify(numbers,0, i+1);
+            }
+    }
+
+    public void printArray(int[] numbers){
+    for(int i =0; i < numbers.length; i++)
+    System.out.print(numbers[i] + " ");
+    
+    System.out.println();
+   }
+}
