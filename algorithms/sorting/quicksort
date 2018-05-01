@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sorting;
+
+/**
+ *
+ * @author titusmoras
+ */
+public class QuickSort {
+    // recursive - beging index, end index.
+    void quicksort(int [] numbers, int beginIndex, int endIndex){
+        if(beginIndex < 0 || endIndex>= numbers.length)
+            return;
+        if(endIndex - beginIndex <= 0)
+            return;
+        //loop through the numbers after choosing rhe pivot
+        int pivot = numbers[endIndex];
+        int counter = beginIndex;
+        int partition = beginIndex -1;
+        
+        // assumption is , all elements to the left of the partitioon are smaller than the pivot
+        // the loop  fixes the issues 
+        
+        for(; counter < endIndex; counter++)
+        {
+            if (numbers[counter] < pivot){
+                 partition++;// make space for the new number     // anamoly, fix it  
+                 if (partition != counter){ // if equal, nothing to swap
+                 int temp = numbers[counter];
+                 numbers[counter] = numbers[partition];
+                 numbers[partition] = temp;
+                 printArray(numbers);
+                 }
+                 
+            }
+        }
+        
+        // counter is now same as pivot. make space for the pivot, and swap
+         partition++;
+        if (partition != counter){ // if equal, nothing to swap
+            int temp = numbers[counter];
+            numbers[counter] = numbers[partition];
+            numbers[partition] = temp;
+            printArray(numbers);
+         }
+        System.out.println("in partition: " + beginIndex + "-- " + (partition-1));
+        quicksort(numbers, beginIndex, partition-1);
+        System.out.println("in partition: " + (partition +1) + "-- " + endIndex);
+        quicksort(numbers, partition +1, endIndex);
+             
+    }
+    
+    public static void main(String ... args){
+        int [] numbers = new int[]{3,2,6,1,7,5,8,0};
+        QuickSort qsort = new QuickSort();
+        System.out.println ("Before sort");
+        qsort.printArray(numbers);
+        qsort.quicksort(numbers, 0, numbers.length -1);
+        System.out.println ("After sort");
+        qsort.printArray(numbers);
+    }
+    
+    
+public void printArray(int[] numbers){
+    for(int i =0; i < numbers.length; i++)
+    System.out.print(numbers[i] + " ");
+    
+    System.out.println();
+}
+    
+}
