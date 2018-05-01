@@ -1,0 +1,57 @@
+package sorting;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author titusmoras
+ */
+public class SelectionSort {
+    
+    
+    public void printArray(int[] numbers){
+    for(int i =0; i < numbers.length; i++)
+    System.out.print(numbers[i] + " ");
+    
+    System.out.println();
+   }
+    
+    public static void main(String ... vargs){
+        int[] numbers = {6, 3, 4, 1, 0, 5};
+        SelectionSort sort = new SelectionSort();
+        sort.selectionSortPractice(numbers);
+    }
+    
+    public void selectionSortPractice(int[] numbers){
+        // run the loop over all the elements, in each iterationm
+        //select the smallest, insert at the beginning of the array
+        // by swappong wityh the first non- sorted element so far
+        
+        int unsortedIndex =0;
+        int currentUnsortedIndex = 0;
+        
+        for(unsortedIndex=0; unsortedIndex < numbers.length; unsortedIndex++){
+           int smallestIndex = unsortedIndex;
+           System.out.println("Starting with number" + numbers[unsortedIndex] + " at index " + unsortedIndex);
+            for(currentUnsortedIndex = unsortedIndex+1; currentUnsortedIndex < numbers.length; 
+                    currentUnsortedIndex++){
+                if(numbers[smallestIndex] > numbers[currentUnsortedIndex])
+                { smallestIndex = currentUnsortedIndex;
+                    System.out.println("New Smallest is " + numbers[currentUnsortedIndex]);
+                    this.printArray(numbers);
+                }
+            }
+            System.out.println("Swapping.....");
+            int temp = numbers[unsortedIndex]; numbers[unsortedIndex] = numbers[smallestIndex];
+            numbers[smallestIndex]=temp;
+            this.printArray(numbers);
+    }
+    
+    
+
+}
+}
