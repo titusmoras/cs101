@@ -1,0 +1,49 @@
+//doubly linked list
+
+function getNode(value){ 
+    return ({value, next:null, previous: null})
+}
+
+function createDoubleLinkedList(arr){
+ let root = getNode(arr[0]);
+ let current = root;
+
+ for( let i = 1 ; i < arr.length; i++){
+     current.next = getNode(arr[i]);
+     current.next.previous = current;
+     current = current.next;
+
+ }
+
+return root;
+  
+}
+
+function printlistforward( obj){
+    console.log( "navigate forward")
+    while( obj!==null){
+console.log(obj.value + " -> ")
+obj= obj.next;
+    }
+}
+
+
+function printlistbackward( obj){
+    console.log( "navigate backward")
+    while( obj.next!==null)
+        obj= obj.next;
+
+   while ( obj!==null)
+   {
+       
+       console.log(obj.value + " ->")
+       obj = obj.previous
+   }
+}
+
+let arg = [1,599,29,38,58,0,65,39,57]
+let obj = createDoubleLinkedList(arg);
+
+printlistforward(obj);
+printlistbackward(obj);
+
