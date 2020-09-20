@@ -1,0 +1,32 @@
+//singly linked list
+
+function getNode(val){
+    return ({value: val, nextNode: null})
+}
+
+function createLinkedList(arr){
+    let root = getNode(arr[0]);
+    let current = root;
+    console.log( "current: " + current)
+    for ( let i = 1; i <arr.length; i++){
+       let newNode =  getNode(arr[i])
+       console.log( " newNode: " + newNode.value)
+       current.nextNode = newNode;
+       console.log( " current.nextNode:" + current.nextNode.value)
+
+       current = current.nextNode;
+       console.log( "current: "  + current.value)
+    }
+    console.log( " root:" + root.value)
+    return root;
+}
+function printLinkedList (node){ 
+    while( node!=null){
+    console.log( node.value + " -> " )
+    node=node.nextNode;
+    }
+
+}
+
+let obj = createLinkedList([3,5,2,39,222, 9,99,28,92,])
+printLinkedList( obj);
